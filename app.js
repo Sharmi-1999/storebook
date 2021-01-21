@@ -1,9 +1,10 @@
 // Book Class: Represents a Book
 class Book {
-  constructor(title, author, isbn) {
+  constructor(title, author, isbn, file) {
     this.title = title;
     this.author = author;
     this.isbn = isbn;
+    this.file = file;
   }
 }
 
@@ -24,6 +25,7 @@ class UI {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.isbn}</td>
+      <td><a target="_blank" href="${book.file}">File</a></td>
     `;
 
     list.appendChild(row);
@@ -45,6 +47,12 @@ class UI {
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
+    document.querySelector("#fileType").value = "NONE";
+    document.querySelector("#fileUrl").value = "";
+    document.querySelector("#fileUpload").value = "";
+
+    $('#file-url-div').addClass('d-none');
+    $('#file-upload-div').addClass('d-none');
   }
 }
 
@@ -60,13 +68,16 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
   const title = document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const isbn = document.querySelector("#isbn").value;
+  const fileType = document.querySelector("#fileType").value;
+  const fileUrl = document.querySelector("#fileUrl").value;
+  let file = (fileType == 'URL') ? fileUrl : 'FILE-UPLOAD-URL';
 
   // Validate
-  if (title === "" || author === "" || isbn === "") {
+  if (title === "" || author === "" || isbn === "" || fileType === "" || file === "") {
     UI.showAlert("Please fill in all fields", "danger");
   } else {
     // Instatiate book
-    const book = new Book(title, author, isbn);
+    const book = new Book(title, author, isbn, file);
 
     // Add Book to UI
     UI.addBookToList(book);
@@ -76,5 +87,19 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 
     // Clear fields
     UI.clearFields();
+  }
+});
+
+$('#fileType').change(function() {
+  let fileType = $(this).val();
+  if(fileType == 'URL') {
+    $('#file-url-div').removeClass('d-none');
+    $('#file-upload-div').addClass('d-none');
+  } else if(fileType == 'FILE') {
+    $('#file-url-div').addClass('d-none');
+    $('#file-upload-div').removeClass('d-none');
+  } else {
+    $('#file-url-div').addClass('d-none');
+    $('#file-upload-div').addClass('d-none');
   }
 });
