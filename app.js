@@ -20,7 +20,6 @@ class UI {
     //setting datas to the localstorage
     let bookArr=[book.title,book.author,book.isbn]
     localStorage.setItem(book.Book_Code,JSON.stringify(bookArr));
-
     display_table();
   }
 
@@ -80,10 +79,10 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 
 
 
-
 //a function to display table
 function display_table(){
-table_data=document.getElementById("book-list");
+  table_data=document.getElementById("book-list");
+  table_data.innerHTML=`<tr></tr>`
   for (let i = 0; i < localStorage.length; i++) {
     
     table_data.innerHTML += `<tr>
@@ -96,7 +95,8 @@ table_data=document.getElementById("book-list");
 
   }
 }
-display_table()
+display_table();
+
 
 
 
