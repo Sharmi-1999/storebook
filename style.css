@@ -157,3 +157,10 @@ input[type="checkbox"] {
 .table {
   color: rgb(255, 255, 255);
 }
+
+body {
+  background-image: url('background.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
