@@ -7,6 +7,7 @@
   --color-green: #37af65;
 }
 
+
 *,
 *::before,
 *::after {
@@ -156,4 +157,16 @@ input[type="checkbox"] {
 
 .table {
   color: rgb(255, 255, 255);
+}
+
+img{
+  position: absolute;
+  z-index: -1;
+  left : 0px;
+  top: 0px;
+background-size: cover;
+width: 100vw;
+height: 100vh;
+opacity: 0.6;
+
 }
