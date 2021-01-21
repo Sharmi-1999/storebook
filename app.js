@@ -48,6 +48,49 @@ class UI {
   }
 }
 
+// Event: Validate the ISBN number 
+function ValidISBN(isbn){
+  console.log(isbn)
+  if (isbn.length == 10){
+    if(isbn[9]=='x' || isbn[9]=='X'){
+      sum = 10*isbn[0] + 9*isbn[1] + 8*isbn[2] + 7*isbn[3] +
+           6*isbn[4] + 5*isbn[5] + 4*isbn[6] + 3*isbn[7] +
+           2*isbn[8] + 1*10;
+    }
+    else{
+      sum = 10*isbn[0] + 9*isbn[1] + 8*isbn[2] + 7*isbn[3] +
+             6*isbn[4] + 5*isbn[5] + 4*isbn[6] + 3*isbn[7] +
+             2*isbn[8] + 1*isbn[9];
+    }
+    if (sum%11 != 0){
+    alert("Invalid ISBN-10 Number! Your checkdigit doesn't match. Please enter the ISBN Number correctly");
+    }
+  }
+  else if (isbn.length == 13){
+    sum = 1*isbn[0] + 3*isbn[1] + 1*isbn[2] + 3*isbn[3] +
+          1*isbn[4] + 3*isbn[5] + 1*isbn[6] + 3*isbn[7] +
+          1*isbn[8] + 3*isbn[9] + 1*isbn[10] + 3*isbn[11];
+    mod = sum%10;
+    if (mod == 0){
+      checknum = 0;
+    }
+    else{
+      checknum = 10 - mod;
+    }
+    if (checknum != isbn[12]){
+    alert("Invalid ISBN-13 Number! Your checkdigit doesn't match. Please enter the ISBN Number correctly");
+    }
+  }
+  else{
+    alert("Invalid ISBN Number! It should be of either valid 10-digit or valid 13-digti number. Please enter the ISBN Number correctly");
+  }
+}
+
+function pressed() {
+  let num = document.getElementById("isbn").value;
+  ValidISBN(num);
+}
+
 // Event: Display Books
 document.addEventListener("DOMContentLoaded", UI.displayBooks);
 
@@ -77,4 +120,4 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     // Clear fields
     UI.clearFields();
   }
-});
+})
