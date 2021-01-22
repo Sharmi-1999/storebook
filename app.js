@@ -29,19 +29,17 @@ class UI {
     list.appendChild(row);
   }
 
-  static showAlert() {
+  static showAlert(message, className) {
     const div = document.createElement("div");
     const main = document.querySelector("main");
-    div.classList.add("success");
-    div.textContent = "Book added to list successfully";
+    div.className = `message ${className}`;
+    div.textContent = message;
     main.appendChild(div);
     // Vanish in 3 seconds
     // setTimeout(() => document.querySelector(".success").remove(), 2000);
-    document
-      .querySelector(".success")
-      .addEventListener("animationend", function () {
-        this.remove();
-      });
+    div.addEventListener("animationend", function () {
+      this.remove();
+    });
   }
 
   static clearFields() {
@@ -97,9 +95,8 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 
   // Validate
   if (title === "" || author === "" || isbn === "") {
-    document.querySelector(".alert").textContent = "Please fill in all details";
+    UI.showAlert("Please fill in all details", "error");
   } else {
-    document.querySelector(".alert").textContent = "";
     document.querySelector(".modal-container").classList.remove("open");
     // Instatiate book
     const book = new Book(title, author, isbn);
@@ -107,7 +104,7 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     // Add Book to UI
     UI.addBookToList(book);
 
-    UI.showAlert();
+    UI.showAlert("Book added to list successfully", "success");
 
     // Clear fields
     UI.clearFields();

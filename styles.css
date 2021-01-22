@@ -97,7 +97,7 @@ button:focus {
 }
 
 .svg {
-  width: 30rem;
+  width: min(85%, 30rem);
   height: 30rem;
   display: flex;
   transform: scale(0.6);
@@ -114,7 +114,7 @@ button:focus {
 }
 
 .load-bar {
-  width: 30rem;
+  width: min(85%, 30rem);
   height: 1rem;
   margin-top: 7rem;
   background-color: var(--clr-blue-1);
@@ -226,7 +226,7 @@ main .list table th {
 }
 
 .add-button {
-  position: absolute;
+  position: fixed;
   width: 90%;
   bottom: 2rem;
   height: 4rem;
@@ -332,13 +332,13 @@ form .form-group input {
   position: relative;
 }
 
-.modal-container .modal .action .alert {
+/* .modal-container .modal .action .alert {
   position: absolute;
   top: 1rem;
   left: 2rem;
   font-size: calc(var(--base-font) - 0.25rem);
   color: var(--clr-alert);
-}
+} */
 
 .button {
   padding: 1rem 1.8rem;
@@ -348,15 +348,15 @@ form .form-group input {
 }
 
 @media (max-height: 498px) {
-  .modal-container {
+  .modal-container,
+  .start {
     bottom: auto;
     height: 500px;
   }
 }
 
-.success {
+.message {
   position: absolute;
-  background-color: var(--clr-success);
   right: 0;
   left: 0;
   height: 2.7rem;
@@ -365,6 +365,14 @@ form .form-group input {
   justify-content: center;
   color: var(--clr-white);
   animation: success 1.4s forwards ease;
+}
+
+.success {
+  background-color: var(--clr-success);
+}
+
+.error {
+  background-color: var(--clr-alert);
 }
 
 @keyframes success {
@@ -376,5 +384,11 @@ form .form-group input {
   }
   100% {
     top: -2.8rem;
+  }
+}
+
+@media (max-width: 350px) {
+  header img {
+    width: 13rem;
   }
 }
