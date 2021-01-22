@@ -49,9 +49,22 @@
           >
         </h1>
 
-        <p id="description">Add some Books</p>
+        <p id="description"style="color:black;">Add some Books</p>
       </header>
       <form id="book-form">
+        <div class="form-group">
+          <label for="Book_Code">Book Code</label>
+          <!--Book Code added in order to better acess books while editing-->
+          <!--Sometime the isbn may be needed to be editted in that case Book Code will help-->
+
+          <input
+            type="text"
+            id="Book_Code"
+            class="form-control"
+            placeholder="eg. B01 ,A03"
+          />
+        </div>
+
         <div class="form-group">
           <label for="title">Title</label>
           <input
@@ -86,9 +99,10 @@
         />
       </form>
       <br />
-      <table class="table table-bordered table-dark">
+      <table class="table table-bordered table-dark" >
         <thead>
           <tr>
+            <th>Book Code</th>
             <th>Title</th>
             <th>Author</th>
             <th>ISBN#</th>
@@ -98,7 +112,12 @@
       </table>
     </main>
 
+
+ 
     <!-- /.Outro -->
     <script src="app.js"></script>
+  
+  
   </body>
+
 </html>

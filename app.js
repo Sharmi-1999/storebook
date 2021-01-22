@@ -1,6 +1,7 @@
 // Book Class: Represents a Book
 class Book {
-  constructor(title, author, isbn) {
+  constructor(Book_Code,title, author, isbn) {
+    this.Book_Code=Book_Code; //added bookcode to property of the book class
     this.title = title;
     this.author = author;
     this.isbn = isbn;
@@ -16,17 +17,10 @@ class UI {
   }
 
   static addBookToList(book) {
-    const list = document.querySelector("#book-list");
-
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.isbn}</td>
-    `;
-
-    list.appendChild(row);
+    //setting datas to the localstorage
+    let bookArr=[book.title,book.author,book.isbn]
+    localStorage.setItem(book.Book_Code,JSON.stringify(bookArr));
+    display_table();
   }
 
   static showAlert(message, className) {
@@ -42,6 +36,7 @@ class UI {
   }
 
   static clearFields() {
+    document.querySelector("#Book_Code").value = "";
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
@@ -57,16 +52,17 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
   e.preventDefault();
 
   // Get form values
-  const title = document.querySelector("#title").value;
+  const Book_Code=document.querySelector("#Book_Code").value;
+  const title =document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const isbn = document.querySelector("#isbn").value;
 
   // Validate
-  if (title === "" || author === "" || isbn === "") {
+  if (Book_Code === "" || title === "" || author === "" || isbn === "") {
     UI.showAlert("Please fill in all fields", "danger");
   } else {
     // Instatiate book
-    const book = new Book(title, author, isbn);
+    const book = new Book(Book_Code,title, author, isbn);
 
     // Add Book to UI
     UI.addBookToList(book);
@@ -78,3 +74,29 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     UI.clearFields();
   }
 });
+
+
+
+
+
+//a function to display table
+function display_table(){
+  table_data=document.getElementById("book-list");
+  table_data.innerHTML=`<tr></tr>`
+  for (let i = 0; i < localStorage.length; i++) {
+    
+    table_data.innerHTML += `<tr>
+    <td>${localStorage.key(i)}</td>
+    <td>${JSON.parse(localStorage.getItem(localStorage.key(i)))[0]}</td>
+    <td>${JSON.parse(localStorage.getItem(localStorage.key(i)))[1]}</td>
+    <td>${JSON.parse(localStorage.getItem(localStorage.key(i)))[2]}</td> </tr>`;
+  
+
+
+  }
+}
+display_table();
+
+
+
+
