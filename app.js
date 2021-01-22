@@ -24,10 +24,18 @@ class UI {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.isbn}</td>
+      <td><a href="#" class="btn btn-danger btn-sm delete">Remove</a></td>
     `;
 
     list.appendChild(row);
   }
+  
+  static deleteBook(el) {
+    if(el.classList.contains('delete')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+  
 
   static showAlert(message, className) {
     const div = document.createElement("div");
@@ -38,7 +46,7 @@ class UI {
     container.insertBefore(div, form);
 
     // Vanish in 3 seconds
-    setTimeout(() => document.querySelector(".alert").remove(), 2000);
+    setTimeout(() => document.querySelector(".alert").remove(), 3000);
   }
 
   static clearFields() {
@@ -46,7 +54,17 @@ class UI {
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
   }
+  static removeBook(isbn) {
+    const books = Store.getBooks();
+
+    books.forEach((book, index) => {
+      if(book.isbn === isbn) {
+        books.splice(index, 1);
+      }
+    });
+  }
 }
+  
 
 // Event: Display Books
 document.addEventListener("DOMContentLoaded", UI.displayBooks);
@@ -72,9 +90,22 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     UI.addBookToList(book);
 
     // Show success message
-    UI.showAlert("Book Added", "success");
+    UI.showAlert('Book Added', 'success');
 
     // Clear fields
     UI.clearFields();
   }
+});
+
+// Event: Remove a Book from
+document.querySelector('#book-list').addEventListener('click', (e) => {
+
+  UI.showAlert('Book Removed Successfully', 'success');
+
+  // Remove book from UI
+  UI.deleteBook(e.target);
+
+  // Remove book from book store
+  Store.removeBook(e.target.parentElement.previousElementSibling.innerHTML);
+
 });
