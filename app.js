@@ -51,7 +51,9 @@ class UI {
 
 // Event: Display Books
 document.addEventListener("DOMContentLoaded", function () {
+  // load svg transition
   document.querySelector(".svg").classList.add("load");
+  // remove start page elements after animation and load header, main
   document
     .querySelector(".load-bar")
     .addEventListener("animationend", function () {
@@ -62,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("header").classList.add("open");
       document.querySelector("main").classList.add("open");
     });
+  // theme switcher and change logo
   document
     .querySelector(".theme-switcher")
     .addEventListener("click", function () {
@@ -74,12 +77,16 @@ document.addEventListener("DOMContentLoaded", function () {
           : "./logo-white.svg"
       );
     });
+  // add | invoke modal-container
   document.querySelector(".add-button").addEventListener("click", function () {
     document.querySelector(".modal-container").classList.add("open");
   });
+  // close container on clicking close button
   document.querySelector(".close").addEventListener("click", function () {
     document.querySelector(".modal-container").classList.remove("open");
+    UI.clearFields();
   });
+  // dislay books
   UI.displayBooks();
 });
 
@@ -89,9 +96,9 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
   e.preventDefault();
 
   // Get form values
-  const title = document.querySelector("#title").value;
-  const author = document.querySelector("#author").value;
-  const isbn = document.querySelector("#isbn").value;
+  const title = document.querySelector("#title").value.trim();
+  const author = document.querySelector("#author").value.trim();
+  const isbn = document.querySelector("#isbn").value.trim();
 
   // Validate
   if (title === "" || author === "" || isbn === "") {

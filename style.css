@@ -25,6 +25,8 @@
   --img-bg: url("./bg-book.jpg");
 }
 
+/* light theme colors */
+
 body.light {
   --clr-page-bg: hsl(0, 0%, 98%);
   --clr-border: hsl(214, 13%, 90%);
@@ -38,6 +40,8 @@ body.light {
   --clr-heading: hsl(0, 0%, 30%);
   --clr-btn-bg: hsl(151, 71%, 44%);
 }
+
+/* resets */
 
 *,
 *::after,
@@ -56,6 +60,12 @@ body {
   min-height: 100%;
 }
 
+img {
+  user-select: none;
+}
+
+/* body style */
+
 body {
   font: var(--fw-normal) var(--base-font) var(--ff-sans);
   background-size: cover;
@@ -64,6 +74,8 @@ body {
   padding-top: 5rem;
   background-color: var(--clr-page-bg);
 }
+
+/* input and button resets */
 
 input,
 button {
@@ -78,9 +90,16 @@ button {
   cursor: pointer;
 }
 
-input:focus {
+input:focus,
+button:focus {
   outline: 0;
 }
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* start page - absolute */
 
 .start {
   position: absolute;
@@ -95,6 +114,8 @@ input:focus {
   transition: opacity 0.4s ease;
 }
 
+/* svg container */
+
 .svg {
   width: min(85%, 30rem);
   height: 30rem;
@@ -107,10 +128,14 @@ input:focus {
   transform: scale(1);
 }
 
+/* svg img inside container */
+
 .svg img {
   width: 100%;
   margin: auto;
 }
+
+/* load bar */
 
 .load-bar {
   width: min(85%, 30rem);
@@ -120,6 +145,8 @@ input:focus {
   border-radius: 0.8rem;
   position: relative;
 }
+
+/* load-bar loading */
 
 .load-bar::before {
   content: "";
@@ -133,16 +160,22 @@ input:focus {
   animation: load-bar 1.5s forwards ease-in-out 0.3s;
 }
 
+/* loading bar animation */
+
 @keyframes load-bar {
   100% {
     right: 0;
   }
 }
 
+/* hide the start page (from js) */
+
 .start.hide {
   opacity: 0;
   pointer-events: none;
 }
+
+/* header */
 
 header {
   display: flex;
@@ -153,12 +186,7 @@ header img {
   width: 16rem;
 }
 
-header,
-main {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
+/* theme-switcher */
 
 .theme-switcher {
   width: 4.2rem;
@@ -189,13 +217,19 @@ main {
   width: 1.3rem;
 }
 
+/* transform when theme change */
+
 body.light .theme-switcher .switch {
   transform: translateX(0);
 }
 
+/* main margin */
+
 main {
   margin: 5rem 0;
 }
+
+/* list container  */
 
 main .list {
   border-radius: 0.8rem;
@@ -224,6 +258,8 @@ main .list table th {
   border: 0.01rem solid var(--clr-border);
 }
 
+/* add button (plus button) */
+
 .add-button {
   position: fixed;
   width: 90%;
@@ -246,9 +282,7 @@ main .list table th {
   justify-content: center;
 }
 
-button:active {
-  transform: scale(0.95);
-}
+/* modal-container */
 
 .modal-container {
   position: absolute;
@@ -258,17 +292,9 @@ button:active {
   left: 0;
   background-color: var(--clr-modal-bg-1);
   color: var(--clr-text-2);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
 }
 
-.modal-container.open,
-header.open,
-main.open {
-  opacity: 1;
-  pointer-events: all;
-}
+/* modal inside modal-container */
 
 .modal-container .modal {
   width: min(85%, 45rem);
@@ -281,9 +307,13 @@ main.open {
   border-radius: 0.6rem;
 }
 
+/* padding for all elements inside modal */
+
 .modal-container .modal > * {
   padding: 2rem;
 }
+
+/* title 'Add book' */
 
 .modal-container .modal .title {
   background-color: var(--clr-modal-bg-3);
@@ -299,6 +329,8 @@ main.open {
 .modal-container .modal .title button img {
   width: 1.3rem;
 }
+
+/* form */
 
 form > * + * {
   margin-top: 2rem;
@@ -320,6 +352,8 @@ form .form-group input {
   border-radius: 0.4rem;
 }
 
+/* Action submit button */
+
 .modal-container .modal .action {
   background-color: var(--clr-modal-bg-3);
   border-bottom-left-radius: inherit;
@@ -330,20 +364,35 @@ form .form-group input {
   position: relative;
 }
 
-.button {
+.modal-container .modal .action button {
   padding: 1rem 1.8rem;
   background-color: var(--clr-btn-bg);
   border-radius: 0.5rem;
   color: var(--clr-white);
 }
 
-@media (max-height: 498px) {
-  .modal-container,
-  .start {
-    bottom: auto;
-    height: 500px;
-  }
+/* hide/show using javascript */
+
+/* hide at start */
+
+header,
+main,
+.modal-container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
+
+/* open */
+
+.modal-container.open,
+header.open,
+main.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* alert message */
 
 .message {
   position: absolute;
@@ -354,8 +403,10 @@ form .form-group input {
   align-items: center;
   justify-content: center;
   color: var(--clr-white);
-  animation: success 1.4s forwards ease;
+  animation: message 1.4s forwards ease;
 }
+
+/* success and error */
 
 .success {
   background-color: var(--clr-success);
@@ -365,7 +416,9 @@ form .form-group input {
   background-color: var(--clr-alert);
 }
 
-@keyframes success {
+/* Animation for message */
+
+@keyframes message {
   0% {
     top: -2.8rem;
   }
@@ -374,6 +427,16 @@ form .form-group input {
   }
   100% {
     top: -2.8rem;
+  }
+}
+
+/* Media queries */
+
+@media (max-height: 498px) {
+  .modal-container,
+  .start {
+    bottom: auto;
+    height: 500px;
   }
 }
 

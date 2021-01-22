@@ -58,7 +58,7 @@
               <input
                 type="text"
                 id="title"
-                class="form-control"
+                maxlength="40"
                 placeholder="Enter the Title"
                 autocomplete="off"
               />
@@ -68,7 +68,7 @@
               <input
                 type="text"
                 id="author"
-                class="form-control"
+                maxlength="20"
                 placeholder="Name of the Author"
                 autocomplete="off"
               />
@@ -78,19 +78,14 @@
               <input
                 type="text"
                 id="isbn"
-                class="form-control"
+                maxlength="13"
                 placeholder="ISBN"
                 autocomplete="off"
               />
             </div>
           </form>
           <div class="action">
-            <button
-              type="submit"
-              value="Add Book"
-              class="button"
-              form="book-form"
-            >
+            <button type="submit" value="Add Book" form="book-form">
               Submit
             </button>
           </div>
