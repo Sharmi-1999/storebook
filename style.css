@@ -444,3 +444,10 @@ main.open {
     width: 13rem;
   }
 }
+
+body {
+  background-image: url('background.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
