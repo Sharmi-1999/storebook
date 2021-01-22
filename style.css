@@ -1,3 +1,128 @@
+
+/* NAVIGATION BAR STYLING STARTS */
+#navbar {
+  position: relative;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 7.5px;
+  background: rgb(1 47 87 / 80%);
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 3px 5px rgb(221, 220, 220);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  box-sizing: border-box;
+  float: left;
+}
+
+.s{
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 11px;
+  color: #000000;
+}
+.b{
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 11px;
+  color: rgb(255 187 0);
+}
+
+.logo img {
+  width: 35px;
+  height: 40px;
+  margin-top: 4px;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav ul li a {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+  background: rgb(255 187 0);
+  color: #000000;
+  transition: 0.5s;
+  border-radius: 2.5px;
+}
+
+@media (max-width: 768px) {
+  .menutoggle {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background: rgb(211, 211, 211);
+    float: right;
+    cursor: pointer;
+    text-align: center;
+    font-size: 20px;
+    color: #000000;
+  }
+  .menutoggle:before {
+    content: '\f0c9';
+    font-family: fontAwesome;
+    line-height: 30px;
+  }
+  .menutoggle.active:before {
+    content: '\f00d';
+  }
+  nav {
+    display: none;
+    transition: 0.3s;
+  }
+  nav.active {
+    display: block;
+    width:100%;
+  }
+  nav.active ul{
+    display: block;
+    }
+}
+.fixed {
+  clear: both;
+}
+/* NAVIGATION BAR STYLING ENDS */
+
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+:root {
+  --color-white: #ffffff;
+  --color-darkred: #590219;
+  --color-darkgreen: rgb(1 47 87 / 80%);
+  --color-green: #37af65;
+}
+
+*, *::before, *::after {
+=======
 :root {
   --ff-sans: "Josefin Sans", sans-serif;
   --fw-normal: 400;
@@ -47,6 +172,7 @@ body.light {
 *::before {
   margin: 0;
   padding: 0;
+
   box-sizing: border-box;
 }
 
@@ -59,6 +185,18 @@ body {
   min-height: 100%;
 }
 
+
+/* mobile friendly alternative to using background-attachment: fixed */
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+=======
 img {
   user-select: none;
 }
@@ -89,9 +227,15 @@ button {
   cursor: pointer;
 }
 
+
+h1, p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+=======
 input:focus,
 button:focus {
   outline: 0;
+
 }
 
 button:active {
@@ -113,6 +257,12 @@ button:active {
   transition: opacity 0.4s ease;
 }
 
+input, button, select {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+=======
 /* svg container */
 
 .svg {
@@ -121,6 +271,7 @@ button:active {
   display: flex;
   transform: scale(0.6);
   transition: transform 0.6s ease;
+
 }
 
 .svg.load {
@@ -222,6 +373,13 @@ body.light .theme-switcher .switch {
   transform: translateX(0);
 }
 
+
+input[type="radio"], input[type="checkbox"] {
+  display: inline-block;
+  margin-right: 0.625rem;
+  min-height: 1.25rem;
+  min-width: 1.25rem;
+=======
 /* main margin */
 
 main {
@@ -293,6 +451,11 @@ main .list table th {
   color: var(--clr-text-2);
 }
 
+
+.table {
+  color: rgb(255, 255, 255);
+}
+=======
 /* modal inside modal-container */
 
 .modal-container .modal {
@@ -444,3 +607,4 @@ main.open {
     width: 13rem;
   }
 }
+
