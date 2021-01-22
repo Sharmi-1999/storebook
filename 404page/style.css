@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    /*background: linear-gradient(to bottom right,#18be52,#40c46e);*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../background.jpeg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main
+{
+    width: 60%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(
+        to right bottom, 
+        rgba(255,255,255,0.5), 
+        rgba(255,255,255,0.2)
+    );
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+}
+
+.main h2
+{
+    color: #000000;
+    font-size: 7rem;
+    letter-spacing: 1rem;
+    font-family: sans-serif;
+    cursor: default;
+    transition: 0.5s;
+}
+
+.main p
+{
+    color: #000000bd;
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: default;
+}
+
+.main a
+{
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    display: inline-block;
+    border-radius: 2rem;
+    text-decoration: none;
+    background: #000000;
+    color: #ffffff;
+    transition: 0.5s;
+}
+
+@media only screen and (min-width: 701px)
+{
+    .main h2:hover
+    {
+        font-size: 9rem;
+    }
+
+    .main a:hover
+    {
+        font-size: 1.5rem;
+        background: #000000e0;
+    }
+}
+
+@media only screen and (max-width: 700px)
+{
+    .main
+    {
+        width: 80%;
+    }
+
+    .main h2
+    {
+        font-size: 5rem;
+        letter-spacing: 0.5rem;
+    }
+
+    .main p
+    {
+        font-size: 1.5rem;
+    }
+
+    .main a
+    {
+        margin-top: 3rem;
+    }
+}
