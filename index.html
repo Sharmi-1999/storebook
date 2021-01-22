@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" type="image/x-icon" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&amp;display=swap"
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
     />
+
     <!-- <link
       rel="stylesheet"
       href="https://bootswatch.com/4/flatly/bootstrap.min.css"
@@ -62,32 +62,109 @@
             class="form-control"
             placeholder="Enter the Title"
           />
+=======
+    <link rel="stylesheet" href="./style.css" />
+    <title>BookList App</title>
+  </head>
+  <body>
+    <div class="start">
+      <div class="svg">
+        <img src="./bookread.svg" alt="bookread" />
+      </div>
+      <div class="load-bar"></div>
+    </div>
+    <header>
+      <img src="./logo-white.svg" alt="StoreBook logo" class="logo" />
+      <div class="theme-switcher">
+        <div class="switch">
+          <img src="./moon.svg" alt="change theme" />
+
         </div>
-        <div class="form-group">
-          <label for="author">Author</label>
-          <input
-            type="text"
-            id="author"
-            class="form-control"
-            placeholder="Name of the Author"
-          />
+      </div>
+    </header>
+    <main>
+      <div class="list">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>ISBN</th>
+            </tr>
+          </thead>
+          <tbody id="book-list"></tbody>
+        </table>
+      </div>
+      <div class="add-button">
+        <button>+</button>
+      </div>
+      <div class="modal-container">
+        <div class="modal">
+          <div class="title">
+            <p>Add Book</p>
+            <button class="close">
+              <img src="./icon-cross.svg" alt="close" />
+            </button>
+          </div>
+          <form id="book-form">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                maxlength="40"
+                placeholder="Enter the Title"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-group">
+              <label for="author">Author</label>
+              <input
+                type="text"
+                id="author"
+                maxlength="20"
+                placeholder="Name of the Author"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-group">
+              <label for="isbn">ISBN#</label>
+              <input
+                type="text"
+                id="isbn"
+                maxlength="13"
+                placeholder="ISBN"
+                autocomplete="off"
+              />
+            </div>
+          </form>
+          <div class="action">
+            <button type="submit" value="Add Book" form="book-form">
+              Submit
+            </button>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="isbn">ISBN#</label>
-          <input
-            type="text"
-            id="isbn"
-            class="form-control"
-            placeholder="Enter the ISBN"
-          />
-        </div>
+
         <input
           type="submit"
           value="Add Book"
           class="btn btn-warning btn-block"
         />
       </form>
-      <br />
+      <br>
+      <form id="book-form" style="background-color: #4d004d">
+        <div class="form-group">
+          <label for="title">Search For Books</label>
+          <input
+            type="text"
+            id="input"
+            class="form-control"
+            placeholder="Enter the Title of the book"
+            onkeyup="search()"
+          />
+        </div>
+      </form>
+      <br>
       <table class="table table-bordered table-dark">
         <thead>
           <tr>
@@ -98,9 +175,36 @@
         </thead>
         <tbody id="book-list"></tbody>
       </table>
+=======
+      </div>
+
     </main>
+
 
     <!-- /.Outro -->
     <script src="app.js"></script>
+    
+    <div id="footer">
+      <footer class="footer text-center">
+        <br><hr width="95%" color="grey">
+
+        
+
+        <h4>
+          <i class="fas fa-book"></i>&nbsp;<span style="color:black;">Store</span><span style="color: rgb(255, 187, 0)">Book</span>
+        </h4>
+          
+        <p class="font-weight-normal font-small mb-0" style="text-align:center;">
+          Copyright © StoreBook | All rights reserved.
+        </p>
+        <br>
+          
+
+      </footer>
+    </div>
+    
+=======
+    <script src="./app.js"></script>
+
   </body>
 </html>
