@@ -1,9 +1,10 @@
 // Book Class: Represents a Book
 class Book {
-  constructor(title, author, isbn) {
+  constructor(title, author, isbn, date) {
     this.title = title;
     this.author = author;
     this.isbn = isbn;
+    this.date = date;
   }
 }
 
@@ -24,6 +25,7 @@ class UI {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.isbn}</td>
+      <td>${book.date}</td>
     `;
 
     list.appendChild(row);
@@ -45,6 +47,7 @@ class UI {
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
+    document.querySelector("#date").value = "";
   }
 }
 
@@ -60,13 +63,14 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
   const title = document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const isbn = document.querySelector("#isbn").value;
+  const date = document.querySelector("#date").value;
 
   // Validate
-  if (title === "" || author === "" || isbn === "") {
+  if (title === "" || author === "" || isbn === "" || date === "") {
     UI.showAlert("Please fill in all fields", "danger");
   } else {
     // Instatiate book
-    const book = new Book(title, author, isbn);
+    const book = new Book(title, author, isbn, date);
 
     // Add Book to UI
     UI.addBookToList(book);
