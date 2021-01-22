@@ -78,8 +78,7 @@ button {
   cursor: pointer;
 }
 
-input:focus,
-button:focus {
+input:focus {
   outline: 0;
 }
 
@@ -243,7 +242,6 @@ main .list table th {
   color: var(--clr-white);
   right: 0;
   cursor: pointer;
-  outline: 0;
   align-items: center;
   justify-content: center;
 }
@@ -331,14 +329,6 @@ form .form-group input {
   justify-content: flex-end;
   position: relative;
 }
-
-/* .modal-container .modal .action .alert {
-  position: absolute;
-  top: 1rem;
-  left: 2rem;
-  font-size: calc(var(--base-font) - 0.25rem);
-  color: var(--clr-alert);
-} */
 
 .button {
   padding: 1rem 1.8rem;
