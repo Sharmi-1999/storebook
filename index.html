@@ -90,7 +90,40 @@
             </button>
           </div>
         </div>
+
+        <input
+          type="submit"
+          value="Add Book"
+          class="btn btn-warning btn-block"
+        />
+      </form>
+      <br>
+      <form id="book-form" style="background-color: #4d004d">
+        <div class="form-group">
+          <label for="title">Search For Books</label>
+          <input
+            type="text"
+            id="input"
+            class="form-control"
+            placeholder="Enter the Title of the book"
+            onkeyup="search()"
+          />
+        </div>
+      </form>
+      <br>
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN#</th>
+          </tr>
+        </thead>
+        <tbody id="book-list"></tbody>
+      </table>
+=======
       </div>
+
     </main>
 
 

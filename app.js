@@ -1,4 +1,3 @@
-// Book Class: Represents a Book
 class Book {
   constructor(title, author, isbn) {
     this.title = title;
@@ -144,6 +143,25 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
   }
 });
 
+function search(){
+  let title=document.getElementById('input').value.toUpperCase();
+  let table=document.getElementById('book-list');
+  let tr=table.getElementsByTagName('tr');
+  for(var i=0;i<tr.length;i++){
+    let td=tr[i].getElementsByTagName('td')[0];
+    if(td){
+      let tdvalue=td.textContent || td.innerHTML;
+      if(tdvalue.toUpperCase().indexOf(title)>-1){
+        tr[i].style.display = '';
+      }
+      else{
+        tr[i].style.display='none';
+      }
+    }
+  }
+}
+=======
+
 // Event: Remove a Book from
 document.querySelector('#book-list').addEventListener('click', (e) => {
 
@@ -156,3 +174,4 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
   Store.removeBook(e.target.parentElement.previousElementSibling.innerHTML);
 
 });
+
