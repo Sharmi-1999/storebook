@@ -420,12 +420,20 @@ form .form-group input {
   color: var(--clr-white);
 }
 
+/* footer */
+
+footer {
+  color: var(--clr-text-2);
+  text-align: center;
+}
+
 /* hide/show using javascript */
 
 /* hide at start */
 
 header,
 main,
+footer,
 .modal-container {
   opacity: 0;
   pointer-events: none;
@@ -436,7 +444,8 @@ main,
 
 .modal-container.open,
 header.open,
-main.open {
+main.open,
+footer.open {
   opacity: 1;
   pointer-events: all;
 }

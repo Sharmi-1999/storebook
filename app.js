@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 400);
       document.querySelector("header").classList.add("open");
       document.querySelector("main").classList.add("open");
+      document.querySelector("footer").classList.add("open");
     });
   // theme switcher and change logo
   document
