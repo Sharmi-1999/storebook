@@ -257,6 +257,23 @@ main .list table th {
   border: 0.01rem solid var(--clr-border);
 }
 
+main .list tbody tr td:nth-child(3) {
+  position: relative;
+}
+
+main .list tbody tr td:nth-child(3) .clear {
+  position: absolute;
+  right: 1.7rem;
+  bottom: 1.7rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+main .list tbody tr td:nth-child(3):hover .clear {
+  opacity: 1;
+  pointer-events: all;
+}
+
 /* add button (plus button) */
 
 .add-button {
@@ -415,6 +432,10 @@ main.open {
   background-color: var(--clr-alert);
 }
 
+.fall {
+  animation: fall 0.4s forwards ease;
+}
+
 /* Animation for message */
 
 @keyframes message {
@@ -426,6 +447,13 @@ main.open {
   }
   100% {
     top: -2.8rem;
+  }
+}
+
+@keyframes fall {
+  100% {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 

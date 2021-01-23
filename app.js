@@ -20,11 +20,34 @@ class UI {
 
     const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.isbn}</td>
-    `;
+    for (let key of Object.keys(book)) {
+      if (key === "isbn") {
+        const clear = document.createElement("button");
+        clear.classList.add("clear");
+        clear.innerHTML = `<img src="./icon-cross.svg" alt="delete">`;
+        clear.addEventListener("click", function () {
+          const correspondingRow = this.parentElement.parentElement;
+          correspondingRow.classList.add("fall");
+          correspondingRow.addEventListener("animationend", function () {
+            setTimeout(function () {
+              correspondingRow.remove();
+            }, 100);
+          });
+        });
+        const span = document.createElement("span");
+        span.textContent = book[key];
+        const td = document.createElement("td");
+        td.appendChild(clear);
+        td.insertBefore(span, clear);
+        row.appendChild(td);
+      } else {
+        row.appendChild(
+          document
+            .createElement("td")
+            .appendChild(document.createTextNode(book[key])).parentElement
+        );
+      }
+    }
 
     list.appendChild(row);
   }
