@@ -1,3 +1,4 @@
+// Book Class: Represents a Book
 class Book {
   constructor(title, author, isbn) {
     this.title = title;
@@ -19,22 +20,37 @@ class UI {
 
     const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.isbn}</td>
-      <td><a href="#" class="btn btn-danger btn-sm delete">Remove</a></td>
-    `;
+    for (let key of Object.keys(book)) {
+      if (key === "isbn") {
+        const clear = document.createElement("button");
+        clear.classList.add("clear");
+        clear.innerHTML = `<img src="./icon-cross.svg" alt="delete">`;
+        clear.addEventListener("click", function () {
+          const correspondingRow = this.parentElement.parentElement;
+          correspondingRow.classList.add("fall");
+          correspondingRow.addEventListener("animationend", function () {
+            setTimeout(function () {
+              correspondingRow.remove();
+            }, 100);
+          });
+        });
+        const span = document.createElement("span");
+        span.textContent = book[key];
+        const td = document.createElement("td");
+        td.appendChild(clear);
+        td.insertBefore(span, clear);
+        row.appendChild(td);
+      } else {
+        row.appendChild(
+          document
+            .createElement("td")
+            .appendChild(document.createTextNode(book[key])).parentElement
+        );
+      }
+    }
 
     list.appendChild(row);
   }
-  
-  static deleteBook(el) {
-    if(el.classList.contains('delete')) {
-      el.parentElement.parentElement.remove();
-    }
-  }
-  
 
   static showAlert(message, className) {
     const div = document.createElement("div");
@@ -43,14 +59,10 @@ class UI {
     div.textContent = message;
     main.appendChild(div);
     // Vanish in 3 seconds
-
-    setTimeout(() => document.querySelector(".alert").remove(), 3000);
-=======
     // setTimeout(() => document.querySelector(".success").remove(), 2000);
     div.addEventListener("animationend", function () {
       this.remove();
     });
-
   }
 
   static clearFields() {
@@ -58,17 +70,7 @@ class UI {
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
   }
-  static removeBook(isbn) {
-    const books = Store.getBooks();
-
-    books.forEach((book, index) => {
-      if(book.isbn === isbn) {
-        books.splice(index, 1);
-      }
-    });
-  }
 }
-  
 
 // Event: Display Books
 document.addEventListener("DOMContentLoaded", function () {
@@ -84,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 400);
       document.querySelector("header").classList.add("open");
       document.querySelector("main").classList.add("open");
+      document.querySelector("footer").classList.add("open");
     });
   // theme switcher and change logo
   document
@@ -106,6 +109,35 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".close").addEventListener("click", function () {
     document.querySelector(".modal-container").classList.remove("open");
     UI.clearFields();
+  });
+  // search
+  document.querySelector(".search img").addEventListener("click", function () {
+    this.parentElement.classList.add("open");
+    this.nextElementSibling.focus();
+  });
+  document.getElementById("search").addEventListener("blur", function () {
+    this.parentElement.classList.remove("open");
+  });
+  document.getElementById("search").addEventListener("input", function () {
+    const that = this;
+    const rows = document.querySelectorAll("tbody tr");
+    if (rows) {
+      rows.forEach(function (row) {
+        const childNodes = row.childNodes;
+        for (let i = 0; i < childNodes.length; i++) {
+          if (
+            childNodes[i].textContent
+              .toLowerCase()
+              .indexOf(that.value.trim().toLowerCase()) == -1
+          ) {
+            row.classList.add("none");
+          } else {
+            row.classList.remove("none");
+            break;
+          }
+        }
+      });
+    }
   });
   // dislay books
   UI.displayBooks();
@@ -132,46 +164,9 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     // Add Book to UI
     UI.addBookToList(book);
 
-    // Show success message
-    UI.showAlert('Book Added', 'success');
-=======
     UI.showAlert("Book added to list successfully", "success");
-
 
     // Clear fields
     UI.clearFields();
   }
 });
-
-function search(){
-  let title=document.getElementById('input').value.toUpperCase();
-  let table=document.getElementById('book-list');
-  let tr=table.getElementsByTagName('tr');
-  for(var i=0;i<tr.length;i++){
-    let td=tr[i].getElementsByTagName('td')[0];
-    if(td){
-      let tdvalue=td.textContent || td.innerHTML;
-      if(tdvalue.toUpperCase().indexOf(title)>-1){
-        tr[i].style.display = '';
-      }
-      else{
-        tr[i].style.display='none';
-      }
-    }
-  }
-}
-=======
-
-// Event: Remove a Book from
-document.querySelector('#book-list').addEventListener('click', (e) => {
-
-  UI.showAlert('Book Removed Successfully', 'success');
-
-  // Remove book from UI
-  UI.deleteBook(e.target);
-
-  // Remove book from book store
-  Store.removeBook(e.target.parentElement.previousElementSibling.innerHTML);
-
-});
-
