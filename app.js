@@ -109,6 +109,35 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".modal-container").classList.remove("open");
     UI.clearFields();
   });
+  // search
+  document.querySelector(".search img").addEventListener("click", function () {
+    this.parentElement.classList.add("open");
+    this.nextElementSibling.focus();
+  });
+  document.getElementById("search").addEventListener("blur", function () {
+    this.parentElement.classList.remove("open");
+  });
+  document.getElementById("search").addEventListener("input", function () {
+    const that = this;
+    const rows = document.querySelectorAll("tbody tr");
+    if (rows) {
+      rows.forEach(function (row) {
+        const childNodes = row.childNodes;
+        for (let i = 0; i < childNodes.length; i++) {
+          if (
+            childNodes[i].textContent
+              .toLowerCase()
+              .indexOf(that.value.trim().toLowerCase()) == -1
+          ) {
+            row.classList.add("none");
+          } else {
+            row.classList.remove("none");
+            break;
+          }
+        }
+      });
+    }
+  });
   // dislay books
   UI.displayBooks();
 });

@@ -179,10 +179,43 @@ button:active {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 header img {
   width: 16rem;
+}
+
+.search {
+  width: 50rem;
+  position: relative;
+  /* transform: scaleX(0.5); */
+}
+
+.search img {
+  width: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search input {
+  transform: scaleX(0);
+  width: 100%;
+  padding: 1.2rem;
+  border: 0.01rem solid var(--clr-border);
+  border-radius: 1.8rem;
+  color: var(--clr-text-2);
+  transition: transform 0.4s ease;
+}
+
+.search.open img {
+  display: none;
+}
+
+.search.open input {
+  transform: scaleX(1);
 }
 
 /* theme-switcher */
@@ -434,6 +467,10 @@ main.open {
 
 .fall {
   animation: fall 0.4s forwards ease;
+}
+
+.none {
+  display: none;
 }
 
 /* Animation for message */
