@@ -36,6 +36,8 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>BookList App</title>
   </head>
@@ -86,16 +88,16 @@
         />
       </form>
       <br />
-      <table class="table table-bordered table-dark">
+      <table class="table table-bordered table-dark" id='table-list'>
         <thead>
           <tr>
             <th>Title</th>
             <th>Author</th>
             <th>ISBN#</th>
           </tr>
-        </thead>
+       </thead>
         <tbody id="book-list"></tbody>
-      </table>
+    </table>
     </main>
 
     <!-- /.Outro -->

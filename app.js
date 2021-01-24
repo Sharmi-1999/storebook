@@ -78,3 +78,6 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     UI.clearFields();
   }
 });
+$(document).ready( function () {
+$('#table-list').DataTable();
+});
