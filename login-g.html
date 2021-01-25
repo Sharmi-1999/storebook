@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Login</title>
+  <meta charset="utf-8">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="805068429624-s68puu95fg84ct9qkag89hf9kae409q8.apps.googleusercontent.com">
+</head>
+<body>
+  <h1>Click to login using Google!</h1>
+  <div id="profileinfo"></div>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      document.getElementById('profileinfo').innerHTML = profile.getName() + "<br>" + 
+      profile.getEmail() + "<br>" + "<img src='"+profile.getImageUrl()+"'/>";
+    }
+  </script>
+  <a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+      document.getElementById('profileinfo').innerHTML = "";
+    });
+  }
+</script>
+</body>
+</html>
